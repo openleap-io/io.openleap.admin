@@ -22,7 +22,7 @@ services:
 install: true
 
 script:
-  - if [[ ( "$TRAVIS_BRANCH" != "master" ) ]]; then mvn package -U -B $MAVEN_OPTS; fi
+  - mvn package -U -B $MAVEN_OPTS
 
 after_success:
   - ./scripts/docker_build
