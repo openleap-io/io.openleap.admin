@@ -1,1 +1,1 @@
-# org.openwms.core.admin
+# OpenWMS CORE Admin UI
