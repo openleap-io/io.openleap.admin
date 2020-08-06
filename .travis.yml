@@ -16,9 +16,6 @@ cache:
 jobs:
   fast_finish: true
 
-services:
-  - docker
-
 install: true
 
 script:
