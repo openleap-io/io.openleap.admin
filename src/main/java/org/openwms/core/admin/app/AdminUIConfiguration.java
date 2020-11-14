@@ -23,7 +23,6 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Heiko Scherrer
  */
-//@Profile("CLOUD")
 @Configuration
 @EnableDiscoveryClient
 class AdminUIConfiguration {

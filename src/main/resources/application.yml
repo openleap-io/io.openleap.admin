@@ -9,10 +9,6 @@ spring:
     admin:
       context-path: /admin
 
-health:
-  config:
-    enabled: true
-
 owms:
   eureka:
     url: http://user:sa@localhost:8761
