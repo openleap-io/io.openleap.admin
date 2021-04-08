@@ -116,6 +116,7 @@
 				<directory>${basedir}/src/main/resources</directory>
 				<filtering>true</filtering>
 				<includes>
+					<include>**/bootstrap*.yml</include>
 					<include>**/application*.yml</include>
 					<include>**/application*.yaml</include>
 					<include>**/application*.properties</include>
@@ -124,6 +125,7 @@
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
 				<excludes>
+					<exclude>**/bootstrap*.yml</exclude>
 					<exclude>**/application*.yml</exclude>
 					<exclude>**/application*.yaml</exclude>
 					<exclude>**/application*.properties</exclude>
