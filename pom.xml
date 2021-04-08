@@ -64,6 +64,7 @@
 	<properties>
 		<commons-configuration.version>1.10</commons-configuration.version>
 		<guava.version>30.0-jre</guava.version>
+		<HdrHistogram.version>2.1.12</HdrHistogram.version>
 		<spring-boot-admin.version>2.2.4</spring-boot-admin.version>
 		<spring-cloud-dependencies.version>Hoxton.SR10</spring-cloud-dependencies.version>
 	</properties>
@@ -71,24 +72,6 @@
 	<build>
 		<finalName>openwms-core-admin</finalName>
 		<plugins>
-			<plugin>
-				<groupId>pl.project13.maven</groupId>
-				<artifactId>git-commit-id-plugin</artifactId>
-				<version>4.0.4</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>revision</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<verbose>true</verbose>
-					<dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
-					<generateGitPropertiesFile>true</generateGitPropertiesFile>
-					<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -110,28 +93,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<!-- Turn on filtering by default for application properties -->
-		<resources>
-			<resource>
-				<directory>${basedir}/src/main/resources</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>**/bootstrap*.yml</include>
-					<include>**/application*.yml</include>
-					<include>**/application*.yaml</include>
-					<include>**/application*.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>${basedir}/src/main/resources</directory>
-				<excludes>
-					<exclude>**/bootstrap*.yml</exclude>
-					<exclude>**/application*.yml</exclude>
-					<exclude>**/application*.yaml</exclude>
-					<exclude>**/application*.properties</exclude>
-				</excludes>
-			</resource>
-		</resources>
 	</build>
 
 	<dependencyManagement>
@@ -146,6 +107,12 @@
 				<groupId>commons-configuration</groupId>
 				<artifactId>commons-configuration</artifactId>
 				<version>${commons-configuration.version}</version>
+			</dependency>
+			<dependency>
+				<!-- com.netflix.eureka:eureka has an internal clash -->
+				<groupId>org.hdrhistogram</groupId>
+				<artifactId>HdrHistogram</artifactId>
+				<version>${HdrHistogram.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -188,17 +155,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<exclusions>
-				<exclusion>
-					<!-- Bites with Guava -->
-					<groupId>com.google.code.findbugs</groupId>
-					<artifactId>jsr305</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.hdrhistogram</groupId>
-					<artifactId>HdrHistogram</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
