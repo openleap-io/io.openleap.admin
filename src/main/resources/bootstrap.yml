@@ -7,7 +7,6 @@ spring:
       password: sa
   boot:
     admin:
-
       client:
         username: ${spring.security.user.name}
         password: ${spring.security.user.password}
@@ -20,6 +19,12 @@ spring:
       context-path: /admin
       ui:
         brand: "<img src='logo.png'><span>OpenWMS.org Admin UI</span>"
+        view-settings:
+          - name: "about"
+            enabled: false
+          - name: "journal"
+            enabled: false
+        title: OpenWMS.org Admin UI
   jmx:
     enabled: true
   main:
