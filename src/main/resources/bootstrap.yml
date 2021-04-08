@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: admin-ui
+  security:
+    user:
+      name: user
+      password: sa
+  boot:
+    admin:
+
+      client:
+        username: ${spring.security.user.name}
+        password: ${spring.security.user.password}
+        instance:
+          metadata:
+            tags:
+              environment: test
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
+      context-path: /admin
+      ui:
+        brand: "<img src='logo.png'><span>OpenWMS.org Admin UI</span>"
+  jmx:
+    enabled: true
+  main:
+    lazy-initialization: true
+
+info:
+  scm-url: "@scm.url@"
+  build-url: "https://github.com/spring-labs/@project.artifactId@/actions"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+owms:
+  eureka:
+    url: http://user:sa@localhost:8761
+    zone: ${owms.eureka.url}/eureka/
+  srv:
+    hostname: localhost
+    protocol: http
+
+server:
+  port: ${PORT:8155}
+
+eureka:
+  client:
+    instance-info-replication-interval-seconds: 10 # default is 30
+    service-url:
+      defaultZone: ${owms.eureka.zone} # Must be camelCase
+  instance:
+    health-check-url-path: /actuator/health
+    hostname: ${owms.srv.hostname}
+    lease-renewal-interval-in-seconds: 10
+    metadata-map:
+      username: ${spring.security.user.name}
+      password: ${spring.security.user.password}
+      protocol: ${owms.srv.protocol}
+      zone: ${owms.eureka.zone}
+      startup: ${random.int}    #needed to trigger info and endpoint update after restart
+    non-secure-port-enabled: true
+    secure-port-enabled: false
