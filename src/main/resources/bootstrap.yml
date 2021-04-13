@@ -1,10 +1,6 @@
 spring:
   application:
     name: admin-ui
-  security:
-    user:
-      name: user
-      password: sa
   boot:
     admin:
       client:
@@ -29,18 +25,14 @@ spring:
     enabled: true
   main:
     lazy-initialization: true
+  security:
+    user:
+      name: user
+      password: sa
+
 info:
   scm-url: "@scm.url@"
   build-url: "https://github.com/spring-labs/@project.artifactId@/actions"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
 
 owms:
   eureka:
@@ -70,3 +62,12 @@ eureka:
       startup: ${random.int}    #needed to trigger info and endpoint update after restart
     non-secure-port-enabled: true
     secure-port-enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
