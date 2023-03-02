@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>19.1</version>
+        <version>23</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.core.admin</artifactId>
@@ -64,9 +66,9 @@
 	<properties>
 		<commons-configuration.version>1.10</commons-configuration.version>
 		<guava.version>30.0-jre</guava.version>
-		<HdrHistogram.version>2.1.12</HdrHistogram.version>
-		<spring-boot-admin.version>2.2.4</spring-boot-admin.version>
-		<spring-cloud-dependencies.version>Hoxton.SR10</spring-cloud-dependencies.version>
+		<servo-core.version>0.12.21</servo-core.version>
+		<spring-boot-admin.version>2.7.10</spring-boot-admin.version>
+		<spring-cloud-dependencies.version>2021.0.6</spring-cloud-dependencies.version>
 	</properties>
 
 	<build>
@@ -101,18 +103,18 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
+            </dependency>
+            <dependency>
+				<!-- Clash in org.springframework.cloud:spring-cloud-starter-stream-rabbit -->
+				<groupId>com.netflix.servo</groupId>
+				<artifactId>servo-core</artifactId>
+				<version>${servo-core.version}</version>
 			</dependency>
 			<dependency>
 				<!-- com.netflix.eureka:eureka has an internal clash -->
 				<groupId>commons-configuration</groupId>
 				<artifactId>commons-configuration</artifactId>
 				<version>${commons-configuration.version}</version>
-			</dependency>
-			<dependency>
-				<!-- com.netflix.eureka:eureka has an internal clash -->
-				<groupId>org.hdrhistogram</groupId>
-				<artifactId>HdrHistogram</artifactId>
-				<version>${HdrHistogram.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -138,10 +140,6 @@
 		</dependency>
 		<dependency>
 			<groupId>de.codecentric</groupId>
-			<artifactId>spring-boot-admin-starter-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-server</artifactId>
 		</dependency>
 		<dependency>
@@ -149,8 +147,8 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

@@ -24,11 +24,15 @@ spring:
   jmx:
     enabled: true
   main:
-    lazy-initialization: true
+    lazy-initialization: false
   security:
     user:
       name: user
       password: sa
+
+health:
+  config:
+    enabled: true
 
 owms:
   eureka:
@@ -49,7 +53,15 @@ eureka:
   instance:
     health-check-url-path: /actuator/health
     hostname: ${owms.srv.hostname}
-    lease-renewal-interval-in-seconds: 10
+    # Request a lease with a validity of 5 seconds. If until then the
+    # lease has not been renewed, it expires and the Eureka server can evict it.
+    # Default: 90s
+    lease-expiration-duration-in-seconds: 5
+
+    # The cadence of lease renewal, i.e. how often a heartbeat is sent to Eureka server.
+    # In this case every 2 seconds. Use this only for development / debugging. In production use the ...
+    # Default: 30s
+    lease-renewal-interval-in-seconds:    10
     metadata-map:
       username: ${spring.security.user.name}
       password: ${spring.security.user.password}
@@ -58,6 +70,9 @@ eureka:
       startup: ${random.int}    #needed to trigger info and endpoint update after restart
     non-secure-port-enabled: true
     secure-port-enabled: false
+    statusPageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/info
+    healthCheckUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/health
+    homePageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/
 
 info:
   scm-url: "@scm.url@"
@@ -67,7 +82,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        exclude: "*"
   endpoint:
     health:
       show-details: always
