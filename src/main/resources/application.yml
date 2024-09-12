@@ -3,24 +3,42 @@ spring:
     name: admin-ui
   boot:
     admin:
-      client:
-        username: ${spring.security.user.name}
-        password: ${spring.security.user.password}
-        instance:
-          metadata:
-            tags:
-              environment: test
-            user.name: ${spring.security.user.name}
-            user.password: ${spring.security.user.password}
-      context-path: /admin
+      instance-auth:
+        default-user-name: ${spring.security.user.name}
+        default-password: ${spring.security.user.password}
       ui:
-        brand: "<img src='logo.png'><span>OpenWMS.org Admin UI</span>"
+        brand: "<img src='assets/leaf.png'><span>Interface21.io Admin UI</span>"
         view-settings:
           - name: "about"
             enabled: false
           - name: "journal"
-            enabled: false
-        title: OpenWMS.org Admin UI
+            enabled: true
+        title: Interface21.io Admin UI
+        login-icon: "assets/leaf.png"
+        enable-toasts: true
+        theme:
+          color: "#72a248"
+          palette:
+            50: "#72a248"
+            100: "#9cda83"
+            200: "#6a9f23"
+            300: "#68d160"
+            400: "#d2d047"
+            500: "#afb64a"
+            600: "#29cf2d"
+            700: "#72a248"
+            800: "#356c17"
+            900: "#302f24"
+          background-enabled: false
+        favicon: "assets/leaf.png"
+        favicon-danger: "assets/leaf.png"
+      client:
+        username: ${spring.security.user.name}       #These two are needed so that the client
+        password: ${spring.security.user.password}   #can register at the protected server api
+        instance:
+          metadata:
+            user.name: ${spring.security.user.name}         #These two are needed so that the server
+            user.password: ${spring.security.user.password} #can access the protected client endpoints
   jmx:
     enabled: true
   main:
@@ -30,11 +48,9 @@ spring:
       name: user
       password: sa
 
-health:
-  config:
-    enabled: true
-
 owms:
+  admin:
+    start-page: "/wallboard"
   eureka:
     url: http://user:sa@localhost:8761
     zone: ${owms.eureka.url}/eureka/
@@ -48,6 +64,7 @@ server:
 eureka:
   client:
     instance-info-replication-interval-seconds: 10 # default is 30
+    registryFetchIntervalSeconds: 5 # SBA
     service-url:
       defaultZone: ${owms.eureka.zone} # Must be camelCase
   instance:
@@ -61,7 +78,7 @@ eureka:
     # The cadence of lease renewal, i.e. how often a heartbeat is sent to Eureka server.
     # In this case every 2 seconds. Use this only for development / debugging. In production use the ...
     # Default: 30s
-    lease-renewal-interval-in-seconds:    10
+    lease-renewal-interval-in-seconds: 10
     metadata-map:
       username: ${spring.security.user.name}
       password: ${spring.security.user.password}
@@ -72,7 +89,7 @@ eureka:
     secure-port-enabled: false
     statusPageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/info
     healthCheckUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/health
-    homePageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/
+    homePageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}${owms.admin.start-page}
 
 info:
   scm-url: "@scm.url@"
@@ -82,7 +99,7 @@ management:
   endpoints:
     web:
       exposure:
-        exclude: "*"
+        include: "*"
   endpoint:
     health:
-      show-details: always
+      show-details: ALWAYS
