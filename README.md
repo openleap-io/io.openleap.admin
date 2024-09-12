@@ -8,6 +8,6 @@ of a typical microservice application built with Spring Boot.
 In OpenWMS projects it's main purpose in production is to control the log level of single components and categories as well as controlling
 caches.
 
-![1][overview]
+![overview][1]
 
 [1]: src/site/resources/overview.png
