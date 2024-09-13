@@ -31,7 +31,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 import java.net.URI;
 
 /**
- * A AdminSecurityConfiguration.
+ * A AdminSecurityConfiguration configures Spring Security of this service.
  *
  * @author Heiko Scherrer
  */
