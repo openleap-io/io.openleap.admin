@@ -7,7 +7,7 @@ spring:
         default-user-name: ${spring.security.user.name}
         default-password: ${spring.security.user.password}
       ui:
-        brand: "<img src='assets/leaf.png'><span>Interface21.io Admin UI</span>"
+        brand: "<img src='assets/openleplogosmall.png'><span>OpenLeap.io Admin UI</span>"
         view-settings:
           - name: "about"
             enabled: false
@@ -30,8 +30,8 @@ spring:
             800: "#356c17"
             900: "#302f24"
           background-enabled: false
-        favicon: "assets/leaf.png"
-        favicon-danger: "assets/leaf.png"
+        favicon: "assets/openleplogosmall.png"
+        favicon-danger: "assets/openleplogosmall.png"
       client:
         username: ${spring.security.user.name}       #These two are needed so that the client
         password: ${spring.security.user.password}   #can register at the protected server api
@@ -48,12 +48,12 @@ spring:
       name: user
       password: sa
 
-owms:
+oleap:
   admin:
     start-page: "/wallboard"
   eureka:
     url: http://user:sa@localhost:8761
-    zone: ${owms.eureka.url}/eureka/
+    zone: ${oleap.eureka.url}/eureka/
   srv:
     hostname: localhost
     protocol: http
@@ -66,10 +66,10 @@ eureka:
     instance-info-replication-interval-seconds: 10 # default is 30
     registryFetchIntervalSeconds: 5 # SBA
     service-url:
-      defaultZone: ${owms.eureka.zone} # Must be camelCase
+      defaultZone: ${oleap.eureka.zone} # Must be camelCase
   instance:
     health-check-url-path: /actuator/health
-    hostname: ${owms.srv.hostname}
+    hostname: ${oleap.srv.hostname}
     # Request a lease with a validity of 5 seconds. If until then the
     # lease has not been renewed, it expires and the Eureka server can evict it.
     # Default: 90s
@@ -82,18 +82,18 @@ eureka:
     metadata-map:
       username: ${spring.security.user.name}
       password: ${spring.security.user.password}
-      protocol: ${owms.srv.protocol}
-      zone: ${owms.eureka.zone}
+      protocol: ${oleap.srv.protocol}
+      zone: ${oleap.eureka.zone}
       startup: ${random.int}    #needed to trigger info and endpoint update after restart
     non-secure-port-enabled: true
     secure-port-enabled: false
-    statusPageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/info
-    healthCheckUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/health
-    homePageUrl: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}${owms.admin.start-page}
+    statusPageUrl: ${oleap.srv.protocol}://${oleap.srv.hostname}:${server.port}/actuator/info
+    healthCheckUrl: ${oleap.srv.protocol}://${oleap.srv.hostname}:${server.port}/actuator/health
+    homePageUrl: ${oleap.srv.protocol}://${oleap.srv.hostname}:${server.port}${oleap.admin.start-page}
 
 info:
   scm-url: "@scm.url@"
-  build-url: "https://github.com/spring-labs/@project.artifactId@/actions"
+  build-url: "https://github.com/openleap-io/@project.artifactId@/actions"
 
 management:
   endpoints:

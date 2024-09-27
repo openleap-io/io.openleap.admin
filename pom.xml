@@ -3,37 +3,52 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.openwms</groupId>
-        <artifactId>org.openwms.parent</artifactId>
-        <version>26</version>
-        <relativePath />
-    </parent>
-    <artifactId>org.openwms.core.admin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>OpenWMS.org CORE: Administration UI</name>
-    <url>https://github.com/spring-labs/${project.artifactId}</url>
+	<parent>
+		<groupId>io.openleap</groupId>
+		<artifactId>io.openleap.parent</artifactId>
+		<version>47</version>
+		<relativePath />
+	</parent>
+    <artifactId>io.openleap.admin</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
+    <name>OpenLeap.io: Administration UI</name>
+    <url>https://github.com/openleap-io/${project.artifactId}</url>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/spring-labs/${project.artifactId}/issues</url>
+		<url>https://github.com/openleap-io/${project.artifactId}/issues</url>
 	</issueManagement>
 
 	<distributionManagement>
 		<site>
 			<id>site</id>
-			<url>scm:git:git@github.com:spring-labs/${project.artifactId}.git</url>
+			<url>scm:git:git@github.com:openleap-io/${project.artifactId}.git</url>
 		</site>
 	</distributionManagement>
 
 	<scm>
-		<url>https://github.com/spring-labs/${project.artifactId}</url>
-		<connection>scm:git:https://${scmuser}github.com/spring-labs/${project.artifactId}.git</connection>
-		<developerConnection>scm:git:https://${scmuser}github.com/spring-labs/${project.artifactId}.git</developerConnection>
+		<url>https://github.com/openleap-io/${project.artifactId}</url>
+		<connection>scm:git:https://${scmuser}github.com/openleap-io/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:https://${scmuser}github.com/openleap-io/${project.artifactId}.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
 	<developers>
+		<developer>
+			<id>openleap.io</id>
+			<name>Soeren Kemmann</name>
+			<email>kemmann@openleap.io</email>
+			<url>https://github.com/openleap-io</url>
+			<organization>B+B Unternehmensberatung</organization>
+			<organizationUrl>https://www.bb-online.de</organizationUrl>
+			<timezone>+2</timezone>
+			<roles>
+				<role>Project Lead</role>
+				<role>Architect</role>
+				<role>Developer</role>
+				<role>Deployer</role>
+			</roles>
+		</developer>
 		<developer>
 			<id>scherrer</id>
 			<name>Heiko Scherrer</name>
@@ -53,7 +68,7 @@
 
 	<ciManagement>
 		<system>GitHub</system>
-		<url>https://github.com/spring-labs/${project.artifactId}/actions</url>
+		<url>https://github.com/openleap-io/${project.artifactId}/actions</url>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
@@ -65,14 +80,13 @@
 	</ciManagement>
 
 	<properties>
-		<guava.version>32.0.0-jre</guava.version>
-		<servo-core.version>0.12.21</servo-core.version>
+
 		<spring-boot-admin.version>3.2.3</spring-boot-admin.version>
-		<spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
+		<pectator-api.version>1.7.3</pectator-api.version>
 	</properties>
 
 	<build>
-		<finalName>openwms-core-admin</finalName>
+		<finalName>openleap-admin</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -105,6 +119,12 @@
 				<groupId>com.netflix.servo</groupId>
 				<artifactId>servo-core</artifactId>
 				<version>${servo-core.version}</version>
+			</dependency>
+			<dependency>
+				<!-- Clash in org.springframework.cloud:spring-cloud-starter-stream-rabbit -->
+				<groupId>com.netflix.spectator</groupId>
+				<artifactId>spectator-api</artifactId>
+				<version>${spectator-api.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -155,28 +175,6 @@
 	</dependencies>
 
 	<repositories>
-		<repository>
-			<id>interface21-snapshots</id>
-			<name>Interface21.io Snapshot Repository</name>
-			<url>https://repo.openwms.cloud/repository/maven-snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-		<repository>
-			<id>interface21-releases</id>
-			<name>Interface21.io Release Repository</name>
-			<url>https://repo.openwms.cloud/repository/maven-releases</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
 			<name>Snapshot Repository</name>

@@ -1,6 +1,6 @@
 FROM amazoncorretto:21-alpine as builder
 WORKDIR application
-ARG JAR_FILE=target/openwms-core-admin-exec.jar
+ARG JAR_FILE=target/openleap-admin-exec.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
