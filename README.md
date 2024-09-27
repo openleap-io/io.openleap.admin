@@ -5,7 +5,7 @@ visualize the state of a distributed microservice application and monitor and co
 It is part of the OpenLeap.io domain because it can also be used outside logistics projects and belongs to the technical infrastructure
 components of a typical microservice application built with Spring Boot.
 
-![overview][1]
+<!-- ![overview][1] -->
 
 The main purpose in production is to control the log level of single components and categories as well as controlling caches. Viewing the
 logs is done with a centralized log monitoring system.
