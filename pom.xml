@@ -47,7 +47,6 @@
 		</developer>
 	</developers>
 
-
 	<build>
 		<finalName>openleap-admin</finalName>
 		<plugins>
