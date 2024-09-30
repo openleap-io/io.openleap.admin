@@ -7,14 +7,14 @@
       <option name="url" value="https://repo.openwms.cloud/repository/maven-snapshots" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="interface21-releases" />
-      <option name="name" value="Interface21.io Release Repository" />
-      <option name="url" value="https://repo.openwms.cloud/repository/maven-releases" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="interface21-releases" />
+      <option name="name" value="Interface21.io Release Repository" />
+      <option name="url" value="https://repo.openwms.cloud/repository/maven-releases" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="sonatype-nexus-staging" />

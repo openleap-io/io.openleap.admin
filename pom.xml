@@ -6,32 +6,13 @@
 	<parent>
 		<groupId>io.openleap</groupId>
 		<artifactId>io.openleap.parent</artifactId>
-		<version>47</version>
+		<version>48</version>
 		<relativePath />
 	</parent>
     <artifactId>io.openleap.admin</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.8-SNAPSHOT</version>
     <name>OpenLeap.io: Administration UI</name>
-    <url>https://github.com/openleap-io/${project.artifactId}</url>
 
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/openleap-io/${project.artifactId}/issues</url>
-	</issueManagement>
-
-	<distributionManagement>
-		<site>
-			<id>site</id>
-			<url>scm:git:git@github.com:openleap-io/${project.artifactId}.git</url>
-		</site>
-	</distributionManagement>
-
-	<scm>
-		<url>https://github.com/openleap-io/${project.artifactId}</url>
-		<connection>scm:git:https://${scmuser}github.com/openleap-io/${project.artifactId}.git</connection>
-		<developerConnection>scm:git:https://${scmuser}github.com/openleap-io/${project.artifactId}.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
 
 	<developers>
 		<developer>
@@ -66,24 +47,6 @@
 		</developer>
 	</developers>
 
-	<ciManagement>
-		<system>GitHub</system>
-		<url>https://github.com/openleap-io/${project.artifactId}/actions</url>
-		<notifiers>
-			<notifier>
-				<type>mail</type>
-				<configuration>
-					<address>product@openwms.org</address>
-				</configuration>
-			</notifier>
-		</notifiers>
-	</ciManagement>
-
-	<properties>
-
-		<spring-boot-admin.version>3.2.3</spring-boot-admin.version>
-		<pectator-api.version>1.7.3</pectator-api.version>
-	</properties>
 
 	<build>
 		<finalName>openleap-admin</finalName>
@@ -109,30 +72,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${guava.version}</version>
-            </dependency>
-            <dependency>
-				<!-- Clash in org.springframework.cloud:spring-cloud-starter-stream-rabbit -->
-				<groupId>com.netflix.servo</groupId>
-				<artifactId>servo-core</artifactId>
-				<version>${servo-core.version}</version>
-			</dependency>
-			<dependency>
-				<!-- Clash in org.springframework.cloud:spring-cloud-starter-stream-rabbit -->
-				<groupId>com.netflix.spectator</groupId>
-				<artifactId>spectator-api</artifactId>
-				<version>${spectator-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud-dependencies.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 			<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-dependencies</artifactId>

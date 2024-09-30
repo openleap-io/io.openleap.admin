@@ -1,6 +1,6 @@
 spring:
   application:
-    name: admin-ui
+    name: openleap-admin
   boot:
     admin:
       instance-auth:
@@ -13,8 +13,8 @@ spring:
             enabled: false
           - name: "journal"
             enabled: true
-        title: Interface21.io Admin UI
-        login-icon: "assets/leaf.png"
+        title: OpenLeap.io Admin UI
+        login-icon: "assets/openleaplogosmall.png"
         enable-toasts: true
         theme:
           color: "#72a248"
@@ -30,8 +30,8 @@ spring:
             800: "#356c17"
             900: "#302f24"
           background-enabled: false
-        favicon: "assets/openleplogosmall.png"
-        favicon-danger: "assets/openleplogosmall.png"
+        favicon: "assets/openleaplogosmall.png"
+        favicon-danger: "assets/openleaplogosmall.png"
       client:
         username: ${spring.security.user.name}       #These two are needed so that the client
         password: ${spring.security.user.password}   #can register at the protected server api
