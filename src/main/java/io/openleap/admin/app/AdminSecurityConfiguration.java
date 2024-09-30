@@ -40,7 +40,7 @@ import java.net.URI;
 class AdminSecurityConfiguration implements WebFluxConfigurer {
 
     private final AdminServerProperties adminServer;
-    @Value("${owms.admin.start-page}")
+    @Value("${oleap.admin.start-page}")
     private String startPage;
 
     public AdminSecurityConfiguration(AdminServerProperties adminServer) {
