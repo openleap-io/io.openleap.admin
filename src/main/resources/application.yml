@@ -7,7 +7,7 @@ spring:
         default-user-name: ${spring.security.user.name}
         default-password: ${spring.security.user.password}
       ui:
-        brand: "<img src='assets/openleplogosmall.png'><span>OpenLeap.io Admin UI</span>"
+        brand: "<img src='assets/openleaplogosmall.png'><span>OpenLeap.io Admin UI</span>"
         view-settings:
           - name: "about"
             enabled: false
