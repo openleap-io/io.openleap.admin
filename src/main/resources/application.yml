@@ -52,12 +52,15 @@ oleap:
   admin:
     start-page: "/wallboard"
   eureka:
-    url: ${oleap.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${oleap.srv.hostname}:${oleap.srv.port}
+    url: ${oleap.srv.protocol}://${oleap.srv.user.name}:${oleap.srv.user.password}@${oleap.srv.hostname}:${oleap.srv.port}
     zone: ${oleap.eureka.url}/eureka/
   srv:
     protocol: ${REGISTRY_PROTOCOL:http}
     hostname: ${REGISTRY_HOSTNAME:localhost}
     port: ${REGISTRY_PORT:8761}
+    user:
+      name: user
+      password: sa
 
 server:
   port: ${PORT:8155}
@@ -69,6 +72,7 @@ eureka:
     service-url:
       defaultZone: ${oleap.eureka.zone} # Must be camelCase
   instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     health-check-url-path: /actuator/health
     hostname: ${oleap.srv.hostname}
     # Request a lease with a validity of 5 seconds. If until then the
